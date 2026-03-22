@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "Prism Pour",
+  "short_name": "Prism Pour",
+  "description": "빛나는 액체를 분리해 완성하는 프리미엄 컬러 플라스크 퍼즐 게임",
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0D1020",
+  "theme_color": "#18172B",
+  "categories": ["games", "puzzle", "entertainment"],
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="72" y1="52" x2="460" y2="492" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8E2FF"/>
+      <stop offset="1" stop-color="#F7FBFF"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="256" y1="108" x2="256" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#DDE5FF" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="liquidTop" x1="192" y1="192" x2="320" y2="192" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FBAFF"/>
+      <stop offset="1" stop-color="#6F59FF"/>
+    </linearGradient>
+    <linearGradient id="liquidMid" x1="192" y1="258" x2="320" y2="258" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#36D39B"/>
+      <stop offset="1" stop-color="#17C4C2"/>
+    </linearGradient>
+    <linearGradient id="liquidLow" x1="192" y1="324" x2="320" y2="324" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB548"/>
+      <stop offset="1" stop-color="#FF64A6"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg)"/>
+  <circle cx="106" cy="116" r="84" fill="#6B54FF" fill-opacity="0.12"/>
+  <circle cx="416" cy="396" r="74" fill="#38D39F" fill-opacity="0.14"/>
+
+  <path d="M188 92H324C336.15 92 346 101.85 346 114V158C346 178.02 353.45 197.32 366.89 212.14L379.16 225.67C393.36 241.33 401.24 261.72 401.24 282.87V360C401.24 405.29 364.53 442 319.24 442H192.76C147.47 442 110.76 405.29 110.76 360V282.87C110.76 261.72 118.64 241.33 132.84 225.67L145.11 212.14C158.55 197.32 166 178.02 166 158V114C166 101.85 175.85 92 188 92Z" fill="url(#glass)" stroke="#8A9AE0" stroke-width="12"/>
+  <path d="M170 122H342" stroke="white" stroke-opacity="0.78" stroke-width="10" stroke-linecap="round"/>
+  <path d="M156 278C156 267.507 164.507 259 175 259H337C347.493 259 356 267.507 356 278V362C356 372.493 347.493 381 337 381H175C164.507 381 156 372.493 156 362V278Z" fill="#FFFFFF" fill-opacity="0.18"/>
+
+  <rect x="188" y="162" width="136" height="52" rx="18" fill="url(#liquidTop)"/>
+  <rect x="188" y="228" width="136" height="52" rx="18" fill="url(#liquidMid)"/>
+  <rect x="188" y="294" width="136" height="52" rx="18" fill="url(#liquidLow)"/>
+
+  <path d="M208 152C230 176 282 176 304 152" stroke="white" stroke-opacity="0.48" stroke-width="10" stroke-linecap="round"/>
+  <path d="M208 218C230 242 282 242 304 218" stroke="white" stroke-opacity="0.38" stroke-width="10" stroke-linecap="round"/>
+  <path d="M208 284C230 308 282 308 304 284" stroke="white" stroke-opacity="0.38" stroke-width="10" stroke-linecap="round"/>
+</svg>
