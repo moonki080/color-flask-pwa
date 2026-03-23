@@ -2,7 +2,7 @@
   "use strict";
 
   window.COLOR_FLASK_DATA = {
-    version: "2.3.0",
+    version: "2.4.0",
     app: {
       name: "Prism Pour",
       shortName: "Prism Pour",
@@ -40,22 +40,22 @@
       }
     ],
     palette: {
-      plum: { label: "딥 퍼플", hex: "#6F3DFF" },
-      mint: { label: "민트", hex: "#19E3B2" },
-      sky: { label: "스카이", hex: "#47D7FF" },
-      rose: { label: "로즈", hex: "#FF5A99" },
-      amber: { label: "앰버", hex: "#FF9F1C" },
-      teal: { label: "틸", hex: "#00C2B8" },
-      coral: { label: "코랄", hex: "#FF6B57" },
-      indigo: { label: "인디고", hex: "#4C6FFF" },
-      lime: { label: "라임", hex: "#B7DE2F" },
-      violet: { label: "바이올렛", hex: "#C774FF" },
-      sun: { label: "선샤인", hex: "#FFD93D" },
-      ocean: { label: "오션", hex: "#008CFF" },
-      peach: { label: "피치", hex: "#FFB277" },
-      jade: { label: "제이드", hex: "#17B36B" },
-      berry: { label: "베리", hex: "#D93E82" },
-      slate: { label: "슬레이트", hex: "#9BA7B7" }
+      plum: { label: "퍼플", hex: "#7B3CFF" },
+      mint: { label: "그린", hex: "#1CC95F" },
+      sky: { label: "시안", hex: "#42D7FF" },
+      rose: { label: "핑크", hex: "#FF5FA8" },
+      amber: { label: "오렌지", hex: "#FF9800" },
+      teal: { label: "브라운", hex: "#8C5A2B" },
+      coral: { label: "레드", hex: "#FF4D4D" },
+      indigo: { label: "블루", hex: "#2F7BFF" },
+      lime: { label: "라임", hex: "#BCE125" },
+      violet: { label: "라벤더", hex: "#C86CFF" },
+      sun: { label: "옐로", hex: "#FFD400" },
+      ocean: { label: "네이비", hex: "#1A4CCF" },
+      peach: { label: "베이지", hex: "#E5C27A" },
+      jade: { label: "올리브", hex: "#5F8D27" },
+      berry: { label: "버건디", hex: "#B52B52" },
+      slate: { label: "그레이", hex: "#9EA7B6" }
     },
     stages: [
       {

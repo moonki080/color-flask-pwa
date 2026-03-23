@@ -558,22 +558,22 @@
 
   function buildLayerStyle(colorKey) {
     var hex = getColorHex(colorKey);
-    var topHex = adjustHexColor(hex, 28);
-    var midHex = adjustHexColor(hex, 10);
-    var bottomHex = adjustHexColor(hex, -26);
+    var topHex = adjustHexColor(hex, 22);
+    var midHex = adjustHexColor(hex, 4);
+    var bottomHex = adjustHexColor(hex, -34);
     return (
       "background: linear-gradient(180deg, " +
       topHex +
       " 0%, " +
       midHex +
-      " 34%, " +
+      " 30%, " +
       hex +
-      " 68%, " +
+      " 64%, " +
       bottomHex +
       " 100%);" +
-      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), inset 0 -10px 16px rgba(0,0,0,0.12), 0 10px 18px " +
-      toRgba(hex, 0.22) +
-      "; border-top: 1px solid rgba(255,255,255,0.18);"
+      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -12px 18px rgba(0,0,0,0.18), 0 6px 10px " +
+      toRgba(hex, 0.18) +
+      "; border-top: 1px solid rgba(255,255,255,0.12);"
     );
   }
 
