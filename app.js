@@ -145,6 +145,7 @@
     els.gameNotice = document.getElementById("game-notice");
     els.boardCaption = document.getElementById("board-caption");
     els.boardStageMeta = document.getElementById("board-stage-meta");
+    els.boardScrollArea = document.getElementById("board-scroll-area");
     els.board = document.getElementById("board");
     els.hintButton = document.getElementById("hint-button");
     els.undoButton = document.getElementById("undo-button");
@@ -481,6 +482,7 @@
     var run = state.currentRun;
     var stage = getCurrentStage();
     var moveData = state.recentMove || {};
+    var previousScrollTop = els.boardScrollArea ? els.boardScrollArea.scrollTop : 0;
 
     els.board.className = "board-grid board-" + stage.flaskCount;
     els.board.innerHTML = run.board.map(function (tube, index) {
@@ -521,6 +523,23 @@
         "</div>"
       );
     }).join("");
+
+    if (els.boardScrollArea) {
+      els.boardScrollArea.scrollTop = previousScrollTop;
+    }
+  }
+
+  function resetBoardScrollPosition() {
+    if (!els.boardScrollArea) {
+      return;
+    }
+
+    els.boardScrollArea.scrollTop = 0;
+    window.requestAnimationFrame(function () {
+      if (els.boardScrollArea) {
+        els.boardScrollArea.scrollTop = 0;
+      }
+    });
   }
 
   function buildTubeStackHtml(tube, capacity) {
@@ -708,6 +727,7 @@
     closeModal();
     saveState();
     renderCurrentScreen();
+    resetBoardScrollPosition();
     startGameTimer(true);
   }
 

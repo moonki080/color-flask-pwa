@@ -2,7 +2,7 @@
   "use strict";
 
   window.COLOR_FLASK_DATA = {
-    version: "2.1.0",
+    version: "2.2.0",
     app: {
       name: "Prism Pour",
       shortName: "Prism Pour",

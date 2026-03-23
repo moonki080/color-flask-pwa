@@ -212,7 +212,7 @@
           </section>
 
           <section class="board-shell board-shell--focus">
-            <div class="board-grid-wrap">
+            <div class="board-grid-wrap" id="board-scroll-area">
               <div class="board-grid" id="board" aria-live="polite"></div>
             </div>
             <p class="sr-only" id="board-caption"></p>
@@ -1736,6 +1736,9 @@ body[data-screen="game"] .ambient-layer {
 }
 
 .board-shell--focus {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
   padding: 10px 10px 12px;
@@ -1748,14 +1751,61 @@ body[data-screen="game"] .ambient-layer {
     0 30px 44px rgba(0, 0, 0, 0.28);
 }
 
-.board-shell--focus .board-grid-wrap {
-  padding: 2px 0 0;
+.board-shell--focus::before,
+.board-shell--focus::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.board-grid.board-5 { --tube-width: 72px; --tube-height: 208px; }
-.board-grid.board-10 { --tube-width: 66px; --tube-height: 184px; }
-.board-grid.board-15 { --tube-width: 58px; --tube-height: 158px; --board-gap-y: 10px; --board-gap-x: 8px; }
-.board-grid.board-20 { --tube-width: 50px; --tube-height: 130px; --board-gap-y: 8px; --board-gap-x: 6px; }
+.board-shell--focus::before {
+  top: 10px;
+  background: linear-gradient(180deg, rgba(8, 10, 22, 0.94), rgba(8, 10, 22, 0));
+}
+
+.board-shell--focus::after {
+  bottom: 12px;
+  background: linear-gradient(0deg, rgba(8, 10, 22, 0.94), rgba(8, 10, 22, 0));
+}
+
+.board-shell--focus .board-grid-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  padding: 6px 2px 18px;
+}
+
+.board-shell--focus .board-grid-wrap::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.board-shell--focus .board-grid {
+  height: auto;
+  min-height: 100%;
+  align-content: start;
+  padding-block: 4px 10px;
+  touch-action: pan-y;
+}
+
+.board-shell--focus .board-grid.board-5,
+.board-shell--focus .board-grid.board-10 {
+  align-content: center;
+}
+
+.board-grid.board-5 { --tube-width: 74px; --tube-height: 214px; }
+.board-grid.board-10 { --tube-width: 68px; --tube-height: 190px; }
+.board-grid.board-15 { --tube-width: 60px; --tube-height: 166px; --board-gap-y: 10px; --board-gap-x: 8px; }
+.board-grid.board-20 { --tube-width: 52px; --tube-height: 136px; --board-gap-y: 8px; --board-gap-x: 6px; }
 
 .tube-stack {
   inset: 56px 14px 14px;
@@ -1784,6 +1834,10 @@ body[data-screen="game"] .ambient-layer {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.04) 46%, transparent 78%),
     radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.26), transparent 34%);
+}
+
+.board-shell--focus .tube-button {
+  touch-action: manipulation;
 }
 
 .control-dock {
@@ -1826,8 +1880,8 @@ body[data-screen="game"] .toast {
 
   .board-grid.board-5 { --tube-width: 84px; --tube-height: 228px; }
   .board-grid.board-10 { --tube-width: 78px; --tube-height: 204px; }
-  .board-grid.board-15 { --tube-width: 68px; --tube-height: 176px; }
-  .board-grid.board-20 { --tube-width: 58px; --tube-height: 146px; --board-gap-y: 10px; --board-gap-x: 8px; }
+  .board-grid.board-15 { --tube-width: 70px; --tube-height: 184px; }
+  .board-grid.board-20 { --tube-width: 60px; --tube-height: 152px; --board-gap-y: 10px; --board-gap-x: 8px; }
 }
 
 @media (max-width: 480px) {
@@ -1847,10 +1901,10 @@ body[data-screen="game"] .toast {
     gap: 8px;
   }
 
-  .board-grid.board-5 { --tube-width: 64px; --tube-height: 190px; }
-  .board-grid.board-10 { --tube-width: 58px; --tube-height: 164px; }
-  .board-grid.board-15 { --tube-width: 51px; --tube-height: 142px; --board-gap-y: 8px; --board-gap-x: 6px; }
-  .board-grid.board-20 { --tube-width: 44px; --tube-height: 114px; --board-gap-y: 6px; --board-gap-x: 5px; }
+  .board-grid.board-5 { --tube-width: 66px; --tube-height: 196px; }
+  .board-grid.board-10 { --tube-width: 60px; --tube-height: 172px; }
+  .board-grid.board-15 { --tube-width: 53px; --tube-height: 148px; --board-gap-y: 8px; --board-gap-x: 6px; }
+  .board-grid.board-20 { --tube-width: 46px; --tube-height: 122px; --board-gap-y: 6px; --board-gap-x: 5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2011,6 +2065,7 @@ body[data-screen="game"] .toast {
     els.gameNotice = document.getElementById("game-notice");
     els.boardCaption = document.getElementById("board-caption");
     els.boardStageMeta = document.getElementById("board-stage-meta");
+    els.boardScrollArea = document.getElementById("board-scroll-area");
     els.board = document.getElementById("board");
     els.hintButton = document.getElementById("hint-button");
     els.undoButton = document.getElementById("undo-button");
@@ -2347,6 +2402,7 @@ body[data-screen="game"] .toast {
     var run = state.currentRun;
     var stage = getCurrentStage();
     var moveData = state.recentMove || {};
+    var previousScrollTop = els.boardScrollArea ? els.boardScrollArea.scrollTop : 0;
 
     els.board.className = "board-grid board-" + stage.flaskCount;
     els.board.innerHTML = run.board.map(function (tube, index) {
@@ -2387,6 +2443,23 @@ body[data-screen="game"] .toast {
         "</div>"
       );
     }).join("");
+
+    if (els.boardScrollArea) {
+      els.boardScrollArea.scrollTop = previousScrollTop;
+    }
+  }
+
+  function resetBoardScrollPosition() {
+    if (!els.boardScrollArea) {
+      return;
+    }
+
+    els.boardScrollArea.scrollTop = 0;
+    window.requestAnimationFrame(function () {
+      if (els.boardScrollArea) {
+        els.boardScrollArea.scrollTop = 0;
+      }
+    });
   }
 
   function buildTubeStackHtml(tube, capacity) {
@@ -2574,6 +2647,7 @@ body[data-screen="game"] .toast {
     closeModal();
     saveState();
     renderCurrentScreen();
+    resetBoardScrollPosition();
     startGameTimer(true);
   }
 
@@ -4342,7 +4416,7 @@ body[data-screen="game"] .toast {
   "use strict";
 
   window.COLOR_FLASK_DATA = {
-    version: "2.1.0",
+    version: "2.2.0",
     app: {
       name: "Prism Pour",
       shortName: "Prism Pour",
@@ -4721,7 +4795,7 @@ body[data-screen="game"] .toast {
 ## sw.js
 
 ```javascript
-var CACHE_VERSION = "prism-pour-cache-v2.1.0";
+var CACHE_VERSION = "prism-pour-cache-v2.2.0";
 var APP_SHELL = [
   "./",
   "./index.html",
