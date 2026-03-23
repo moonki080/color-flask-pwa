@@ -21,7 +21,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png">
   <link rel="stylesheet" href="./style.css">
 </head>
-<body data-screen="opening">
+<body data-screen="dashboard">
   <div class="app-shell" id="app-shell">
     <div class="ambient-layer ambient-layer--violet"></div>
     <div class="ambient-layer ambient-layer--mint"></div>
@@ -37,199 +37,178 @@
     </header>
 
     <main class="screen-stack">
-      <section class="screen is-active" id="opening-screen" aria-labelledby="opening-brand">
-        <div class="screen-scroll opening-scroll">
-          <article class="hero-shell">
-            <div class="hero-mark-wrap">
-              <div class="hero-mark-ring"></div>
-              <img
-                class="hero-mark"
-                src="./assets/icons/icon.svg"
-                alt="Prism Pour 로고"
-                width="144"
-                height="144"
-              >
-              <span class="hero-spark hero-spark--one"></span>
-              <span class="hero-spark hero-spark--two"></span>
-              <span class="hero-spark hero-spark--three"></span>
-            </div>
-
-            <div class="hero-copy">
-              <p class="eyebrow" id="opening-welcome">반가워요! 오늘도 감각적인 퍼즐 한 판 어떠세요?</p>
-              <h2 id="opening-brand">Prism Pour</h2>
-              <p class="hero-subcopy" id="opening-tagline">
-                프리즘처럼 빛나는 액체를 정리해, 손끝으로 완성하는 프리미엄 정렬 퍼즐.
-              </p>
-            </div>
-
-            <div class="hero-progress-card">
-              <div class="hero-progress-head">
-                <span>현재 여정</span>
-                <strong id="opening-progress-text">0 / 10 완료</strong>
+      <section class="screen is-active" id="dashboard-screen" aria-labelledby="opening-brand">
+        <div class="screen-scroll dashboard-scroll">
+          <div class="dashboard-shell">
+            <article class="hero-shell dashboard-hero">
+              <div class="hero-mark-wrap">
+                <div class="hero-mark-ring"></div>
+                <img
+                  class="hero-mark"
+                  src="./assets/icons/icon.svg"
+                  alt="Prism Pour 로고"
+                  width="144"
+                  height="144"
+                >
+                <span class="hero-spark hero-spark--one"></span>
+                <span class="hero-spark hero-spark--two"></span>
+                <span class="hero-spark hero-spark--three"></span>
               </div>
-              <div class="progress-track progress-track--hero">
-                <div class="progress-fill" id="opening-progress-fill"></div>
+
+              <div class="hero-copy">
+                <p class="eyebrow" id="opening-welcome">반가워요! 오늘도 감각적인 퍼즐 한 판 어떠세요?</p>
+                <h2 id="opening-brand">Prism Pour</h2>
+                <p class="hero-subcopy" id="opening-tagline">
+                  프리즘처럼 빛나는 액체를 정리해, 손끝으로 완성하는 프리미엄 정렬 퍼즐.
+                </p>
               </div>
-              <p class="hero-progress-detail" id="opening-progress-detail">
-                첫 번째 스테이지부터 여유 있게 시작해 보세요.
-              </p>
-            </div>
 
-            <div class="hero-actions">
-              <button class="cta-button cta-button--primary" id="opening-start-button" type="button">
-                시작하기
-              </button>
-              <button class="cta-button cta-button--secondary" id="opening-continue-button" type="button" hidden>
-                이어하기
-              </button>
-              <button class="cta-button cta-button--ghost" id="opening-settings-button" type="button">
-                설정
-              </button>
-            </div>
-          </article>
-
-          <section class="teaser-grid" aria-label="게임 특징">
-            <article class="teaser-card">
-              <span class="teaser-label">Glass Feel</span>
-              <h3>유리 플라스크의 깊이감</h3>
-              <p>은은한 프리즘 광택과 선명한 액체 레이어로 모바일에서도 색상 구분이 또렷합니다.</p>
-            </article>
-            <article class="teaser-card">
-              <span class="teaser-label">Touch First</span>
-              <h3>터치 흔들림 최소화</h3>
-              <p>안드로이드와 iPhone 모두에서 안정적으로 눌리도록 터치 동작과 레이아웃을 정리했습니다.</p>
-            </article>
-            <article class="teaser-card">
-              <span class="teaser-label">Portable</span>
-              <h3>홈 화면 설치 지원</h3>
-              <p>설치 후에도 PWA처럼 빠르게 열리고, 저장된 진행 상태를 그대로 이어서 플레이할 수 있습니다.</p>
-            </article>
-          </section>
-        </div>
-      </section>
-
-      <section class="screen" id="lobby-screen" aria-labelledby="lobby-heading" hidden>
-        <div class="screen-scroll lobby-scroll">
-          <section class="lobby-hero">
-            <div class="lobby-hero-copy">
-              <p class="eyebrow" id="lobby-heading">Stage Lobby</p>
-              <h2>오늘의 퍼즐 컬렉션</h2>
-              <p id="lobby-progress-detail">
-                난이도와 플라스크 수를 확인하고, 현재 열려 있는 스테이지를 골라 바로 플레이하세요.
-              </p>
-            </div>
-
-            <div class="lobby-hero-stats">
-              <article class="stat-card stat-card--premium">
-                <span class="stat-label">전체 진행률</span>
-                <strong id="overall-progress-text">0 / 10 완료</strong>
-                <div class="progress-track">
-                  <div class="progress-fill" id="overall-progress-fill"></div>
+              <div class="hero-progress-card">
+                <div class="hero-progress-head">
+                  <span>현재 여정</span>
+                  <strong id="opening-progress-text">0 / 10 완료</strong>
                 </div>
-              </article>
-              <article class="stat-card">
-                <span class="stat-label">현재 흐름</span>
-                <strong id="home-progress-summary">초급 0/3 진행 중</strong>
-                <span class="stat-helper" id="home-progress-detail">
-                  저장된 이어하기가 있으면 바로 이어서 들어갈 수 있습니다.
-                </span>
-              </article>
-            </div>
-          </section>
+                <div class="progress-track progress-track--hero">
+                  <div class="progress-fill" id="opening-progress-fill"></div>
+                </div>
+                <p class="hero-progress-detail" id="opening-progress-detail">
+                  첫 번째 스테이지부터 여유 있게 시작해 보세요.
+                </p>
+              </div>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>난이도 선택</h3>
-              <span id="difficulty-summary">현재 난이도를 선택해 주세요.</span>
-            </div>
-            <div class="chip-group chip-group--wide" id="difficulty-selector"></div>
-          </section>
+              <div class="hero-actions">
+                <button class="cta-button cta-button--primary" id="opening-start-button" type="button">
+                  바로 시작
+                </button>
+                <button class="cta-button cta-button--secondary" id="opening-continue-button" type="button" hidden>
+                  이어하기
+                </button>
+                <button class="cta-button cta-button--ghost" id="opening-settings-button" type="button">
+                  설정
+                </button>
+              </div>
+            </article>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>플라스크 개수</h3>
-              <span id="flask-summary">현재 난이도의 전체 구성을 볼 수 있습니다.</span>
-            </div>
-            <div class="chip-group" id="flask-count-selector"></div>
-          </section>
+            <div class="dashboard-grid">
+              <div class="dashboard-main">
+                <section class="lobby-hero dashboard-summary">
+                  <div class="lobby-hero-copy">
+                    <p class="eyebrow">Dashboard</p>
+                    <h2>오늘 플레이할 퍼즐을 골라보세요</h2>
+                    <p id="lobby-progress-detail">
+                      난이도와 플라스크 수를 고른 뒤 바로 플레이하거나, 최근 진행 중인 스테이지를 이어서 시작할 수 있습니다.
+                    </p>
+                  </div>
 
-          <section class="glass-panel">
-            <div class="action-row">
-              <button class="cta-button cta-button--primary" id="lobby-start-button" type="button">
-                현재 스테이지 시작
-              </button>
-              <button class="cta-button cta-button--secondary" id="lobby-continue-button" type="button" hidden>
-                이어하기
-              </button>
-              <button class="cta-button cta-button--ghost" id="records-button" type="button">
-                클리어 기록
-              </button>
-            </div>
-          </section>
+                  <div class="lobby-hero-stats">
+                    <article class="stat-card stat-card--premium">
+                      <span class="stat-label">전체 진행률</span>
+                      <strong id="overall-progress-text">0 / 10 완료</strong>
+                      <div class="progress-track">
+                        <div class="progress-fill" id="overall-progress-fill"></div>
+                      </div>
+                    </article>
+                    <article class="stat-card">
+                      <span class="stat-label">최근 흐름</span>
+                      <strong id="home-progress-summary">초급 0/3 진행 중</strong>
+                      <span class="stat-helper" id="home-progress-detail">
+                        저장된 이어하기가 있으면 바로 게임 화면으로 이동합니다.
+                      </span>
+                    </article>
+                  </div>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>스테이지 선택</h3>
-              <span id="stage-panel-summary">선택한 조건의 스테이지를 확인하세요.</span>
+                  <div class="action-row action-row--dashboard">
+                    <button class="cta-button cta-button--primary" id="lobby-start-button" type="button">
+                      추천 스테이지 시작
+                    </button>
+                    <button class="cta-button cta-button--secondary" id="lobby-continue-button" type="button" hidden>
+                      이어하기
+                    </button>
+                    <button class="cta-button cta-button--ghost" id="records-button" type="button">
+                      클리어 기록
+                    </button>
+                  </div>
+                </section>
+
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>난이도 선택</h3>
+                    <span id="difficulty-summary">현재 난이도를 선택해 주세요.</span>
+                  </div>
+                  <div class="chip-group chip-group--wide" id="difficulty-selector"></div>
+                </section>
+
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>플라스크 개수</h3>
+                    <span id="flask-summary">현재 난이도의 전체 구성을 볼 수 있습니다.</span>
+                  </div>
+                  <div class="chip-group" id="flask-count-selector"></div>
+                </section>
+              </div>
+
+              <aside class="dashboard-side">
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>스테이지 선택</h3>
+                    <span id="stage-panel-summary">선택한 조건의 스테이지를 확인하세요.</span>
+                  </div>
+                  <div class="stage-list" id="stage-list"></div>
+                </section>
+              </aside>
             </div>
-            <div class="stage-list" id="stage-list"></div>
-          </section>
+          </div>
         </div>
       </section>
 
       <section class="screen" id="game-screen" aria-labelledby="game-stage-title" hidden>
         <div class="game-shell">
-          <section class="hud-shell">
-            <div class="hud-top-row">
-              <button class="chrome-button chrome-button--hud" id="back-lobby-button" type="button">
-                로비
-              </button>
-              <div class="hud-title-wrap">
-                <p class="eyebrow" id="game-stage-path">초급 · 1 / 3</p>
-                <h2 id="game-stage-title">Stage</h2>
-              </div>
-              <div class="hud-actions">
-                <button class="chrome-button chrome-button--hud" id="game-help-button" type="button">규칙</button>
-                <button class="chrome-button chrome-button--hud" id="game-settings-button" type="button">설정</button>
+          <header class="game-topbar">
+            <button class="chrome-button chrome-button--hud" id="back-lobby-button" type="button">
+              대시보드
+            </button>
+
+            <div class="game-title-cluster">
+              <p class="eyebrow" id="game-stage-path">초급 · 1 / 3</p>
+              <h2 id="game-stage-title">Stage</h2>
+              <div class="game-progress-inline">
+                <strong id="game-progress-text">1 / 10</strong>
+                <div class="progress-track progress-track--compact" aria-hidden="true">
+                  <div class="progress-fill" id="game-progress-fill"></div>
+                </div>
               </div>
             </div>
 
-            <div class="hud-progress">
-              <div class="hud-progress-copy">
-                <span>진행 상황</span>
-                <strong id="game-progress-text">10개 중 1번째 진행 중</strong>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill" id="game-progress-fill"></div>
-              </div>
+            <div class="hud-actions">
+              <button class="chrome-button chrome-button--hud" id="game-help-button" type="button">규칙</button>
+              <button class="chrome-button chrome-button--hud" id="game-settings-button" type="button">설정</button>
             </div>
+          </header>
 
-            <div class="hud-stats">
-              <article class="hud-pill">
-                <span class="status-label">이동</span>
-                <strong id="move-count">0회</strong>
-              </article>
-              <article class="hud-pill">
-                <span class="status-label">시간</span>
-                <strong id="timer-text">00:00</strong>
-              </article>
-              <article class="hud-pill">
-                <span class="status-label">힌트</span>
-                <strong id="hint-count">3 / 3</strong>
-              </article>
-            </div>
+          <section class="game-status-strip" aria-label="현재 플레이 상태">
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">이동</span>
+              <strong id="move-count">0</strong>
+            </article>
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">시간</span>
+              <strong id="timer-text">00:00</strong>
+            </article>
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">힌트</span>
+              <strong id="hint-count">3</strong>
+            </article>
+            <article class="hud-pill game-stat-pill game-stat-pill--meta">
+              <span class="status-label">보드</span>
+              <strong id="board-stage-meta">플라스크 5개 · 색상 3종</strong>
+            </article>
           </section>
 
-          <div class="notice-banner is-hidden" id="game-notice" aria-live="polite"></div>
-
-          <section class="board-shell">
-            <div class="board-head">
-              <span class="board-caption" id="board-caption">플라스크를 선택하고 목적지를 눌러 이동하세요.</span>
-              <span class="board-caption board-caption--meta" id="board-stage-meta">플라스크 5개 · 색상 3종</span>
-            </div>
+          <section class="board-shell board-shell--focus">
             <div class="board-grid-wrap">
               <div class="board-grid" id="board" aria-live="polite"></div>
             </div>
+            <p class="sr-only" id="board-caption"></p>
           </section>
 
           <nav class="control-dock" aria-label="게임 조작">
@@ -238,6 +217,8 @@
             <button class="dock-button" id="restart-button" type="button">재시작</button>
             <button class="dock-button dock-button--danger" id="give-up-button" type="button">포기</button>
           </nav>
+
+          <div class="notice-banner is-hidden sr-only" id="game-notice" aria-live="polite"></div>
         </div>
       </section>
     </main>

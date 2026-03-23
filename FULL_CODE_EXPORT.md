@@ -28,7 +28,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png">
   <link rel="stylesheet" href="./style.css">
 </head>
-<body data-screen="opening">
+<body data-screen="dashboard">
   <div class="app-shell" id="app-shell">
     <div class="ambient-layer ambient-layer--violet"></div>
     <div class="ambient-layer ambient-layer--mint"></div>
@@ -44,199 +44,178 @@
     </header>
 
     <main class="screen-stack">
-      <section class="screen is-active" id="opening-screen" aria-labelledby="opening-brand">
-        <div class="screen-scroll opening-scroll">
-          <article class="hero-shell">
-            <div class="hero-mark-wrap">
-              <div class="hero-mark-ring"></div>
-              <img
-                class="hero-mark"
-                src="./assets/icons/icon.svg"
-                alt="Prism Pour 로고"
-                width="144"
-                height="144"
-              >
-              <span class="hero-spark hero-spark--one"></span>
-              <span class="hero-spark hero-spark--two"></span>
-              <span class="hero-spark hero-spark--three"></span>
-            </div>
-
-            <div class="hero-copy">
-              <p class="eyebrow" id="opening-welcome">반가워요! 오늘도 감각적인 퍼즐 한 판 어떠세요?</p>
-              <h2 id="opening-brand">Prism Pour</h2>
-              <p class="hero-subcopy" id="opening-tagline">
-                프리즘처럼 빛나는 액체를 정리해, 손끝으로 완성하는 프리미엄 정렬 퍼즐.
-              </p>
-            </div>
-
-            <div class="hero-progress-card">
-              <div class="hero-progress-head">
-                <span>현재 여정</span>
-                <strong id="opening-progress-text">0 / 10 완료</strong>
+      <section class="screen is-active" id="dashboard-screen" aria-labelledby="opening-brand">
+        <div class="screen-scroll dashboard-scroll">
+          <div class="dashboard-shell">
+            <article class="hero-shell dashboard-hero">
+              <div class="hero-mark-wrap">
+                <div class="hero-mark-ring"></div>
+                <img
+                  class="hero-mark"
+                  src="./assets/icons/icon.svg"
+                  alt="Prism Pour 로고"
+                  width="144"
+                  height="144"
+                >
+                <span class="hero-spark hero-spark--one"></span>
+                <span class="hero-spark hero-spark--two"></span>
+                <span class="hero-spark hero-spark--three"></span>
               </div>
-              <div class="progress-track progress-track--hero">
-                <div class="progress-fill" id="opening-progress-fill"></div>
+
+              <div class="hero-copy">
+                <p class="eyebrow" id="opening-welcome">반가워요! 오늘도 감각적인 퍼즐 한 판 어떠세요?</p>
+                <h2 id="opening-brand">Prism Pour</h2>
+                <p class="hero-subcopy" id="opening-tagline">
+                  프리즘처럼 빛나는 액체를 정리해, 손끝으로 완성하는 프리미엄 정렬 퍼즐.
+                </p>
               </div>
-              <p class="hero-progress-detail" id="opening-progress-detail">
-                첫 번째 스테이지부터 여유 있게 시작해 보세요.
-              </p>
-            </div>
 
-            <div class="hero-actions">
-              <button class="cta-button cta-button--primary" id="opening-start-button" type="button">
-                시작하기
-              </button>
-              <button class="cta-button cta-button--secondary" id="opening-continue-button" type="button" hidden>
-                이어하기
-              </button>
-              <button class="cta-button cta-button--ghost" id="opening-settings-button" type="button">
-                설정
-              </button>
-            </div>
-          </article>
-
-          <section class="teaser-grid" aria-label="게임 특징">
-            <article class="teaser-card">
-              <span class="teaser-label">Glass Feel</span>
-              <h3>유리 플라스크의 깊이감</h3>
-              <p>은은한 프리즘 광택과 선명한 액체 레이어로 모바일에서도 색상 구분이 또렷합니다.</p>
-            </article>
-            <article class="teaser-card">
-              <span class="teaser-label">Touch First</span>
-              <h3>터치 흔들림 최소화</h3>
-              <p>안드로이드와 iPhone 모두에서 안정적으로 눌리도록 터치 동작과 레이아웃을 정리했습니다.</p>
-            </article>
-            <article class="teaser-card">
-              <span class="teaser-label">Portable</span>
-              <h3>홈 화면 설치 지원</h3>
-              <p>설치 후에도 PWA처럼 빠르게 열리고, 저장된 진행 상태를 그대로 이어서 플레이할 수 있습니다.</p>
-            </article>
-          </section>
-        </div>
-      </section>
-
-      <section class="screen" id="lobby-screen" aria-labelledby="lobby-heading" hidden>
-        <div class="screen-scroll lobby-scroll">
-          <section class="lobby-hero">
-            <div class="lobby-hero-copy">
-              <p class="eyebrow" id="lobby-heading">Stage Lobby</p>
-              <h2>오늘의 퍼즐 컬렉션</h2>
-              <p id="lobby-progress-detail">
-                난이도와 플라스크 수를 확인하고, 현재 열려 있는 스테이지를 골라 바로 플레이하세요.
-              </p>
-            </div>
-
-            <div class="lobby-hero-stats">
-              <article class="stat-card stat-card--premium">
-                <span class="stat-label">전체 진행률</span>
-                <strong id="overall-progress-text">0 / 10 완료</strong>
-                <div class="progress-track">
-                  <div class="progress-fill" id="overall-progress-fill"></div>
+              <div class="hero-progress-card">
+                <div class="hero-progress-head">
+                  <span>현재 여정</span>
+                  <strong id="opening-progress-text">0 / 10 완료</strong>
                 </div>
-              </article>
-              <article class="stat-card">
-                <span class="stat-label">현재 흐름</span>
-                <strong id="home-progress-summary">초급 0/3 진행 중</strong>
-                <span class="stat-helper" id="home-progress-detail">
-                  저장된 이어하기가 있으면 바로 이어서 들어갈 수 있습니다.
-                </span>
-              </article>
-            </div>
-          </section>
+                <div class="progress-track progress-track--hero">
+                  <div class="progress-fill" id="opening-progress-fill"></div>
+                </div>
+                <p class="hero-progress-detail" id="opening-progress-detail">
+                  첫 번째 스테이지부터 여유 있게 시작해 보세요.
+                </p>
+              </div>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>난이도 선택</h3>
-              <span id="difficulty-summary">현재 난이도를 선택해 주세요.</span>
-            </div>
-            <div class="chip-group chip-group--wide" id="difficulty-selector"></div>
-          </section>
+              <div class="hero-actions">
+                <button class="cta-button cta-button--primary" id="opening-start-button" type="button">
+                  바로 시작
+                </button>
+                <button class="cta-button cta-button--secondary" id="opening-continue-button" type="button" hidden>
+                  이어하기
+                </button>
+                <button class="cta-button cta-button--ghost" id="opening-settings-button" type="button">
+                  설정
+                </button>
+              </div>
+            </article>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>플라스크 개수</h3>
-              <span id="flask-summary">현재 난이도의 전체 구성을 볼 수 있습니다.</span>
-            </div>
-            <div class="chip-group" id="flask-count-selector"></div>
-          </section>
+            <div class="dashboard-grid">
+              <div class="dashboard-main">
+                <section class="lobby-hero dashboard-summary">
+                  <div class="lobby-hero-copy">
+                    <p class="eyebrow">Dashboard</p>
+                    <h2>오늘 플레이할 퍼즐을 골라보세요</h2>
+                    <p id="lobby-progress-detail">
+                      난이도와 플라스크 수를 고른 뒤 바로 플레이하거나, 최근 진행 중인 스테이지를 이어서 시작할 수 있습니다.
+                    </p>
+                  </div>
 
-          <section class="glass-panel">
-            <div class="action-row">
-              <button class="cta-button cta-button--primary" id="lobby-start-button" type="button">
-                현재 스테이지 시작
-              </button>
-              <button class="cta-button cta-button--secondary" id="lobby-continue-button" type="button" hidden>
-                이어하기
-              </button>
-              <button class="cta-button cta-button--ghost" id="records-button" type="button">
-                클리어 기록
-              </button>
-            </div>
-          </section>
+                  <div class="lobby-hero-stats">
+                    <article class="stat-card stat-card--premium">
+                      <span class="stat-label">전체 진행률</span>
+                      <strong id="overall-progress-text">0 / 10 완료</strong>
+                      <div class="progress-track">
+                        <div class="progress-fill" id="overall-progress-fill"></div>
+                      </div>
+                    </article>
+                    <article class="stat-card">
+                      <span class="stat-label">최근 흐름</span>
+                      <strong id="home-progress-summary">초급 0/3 진행 중</strong>
+                      <span class="stat-helper" id="home-progress-detail">
+                        저장된 이어하기가 있으면 바로 게임 화면으로 이동합니다.
+                      </span>
+                    </article>
+                  </div>
 
-          <section class="glass-panel">
-            <div class="panel-head">
-              <h3>스테이지 선택</h3>
-              <span id="stage-panel-summary">선택한 조건의 스테이지를 확인하세요.</span>
+                  <div class="action-row action-row--dashboard">
+                    <button class="cta-button cta-button--primary" id="lobby-start-button" type="button">
+                      추천 스테이지 시작
+                    </button>
+                    <button class="cta-button cta-button--secondary" id="lobby-continue-button" type="button" hidden>
+                      이어하기
+                    </button>
+                    <button class="cta-button cta-button--ghost" id="records-button" type="button">
+                      클리어 기록
+                    </button>
+                  </div>
+                </section>
+
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>난이도 선택</h3>
+                    <span id="difficulty-summary">현재 난이도를 선택해 주세요.</span>
+                  </div>
+                  <div class="chip-group chip-group--wide" id="difficulty-selector"></div>
+                </section>
+
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>플라스크 개수</h3>
+                    <span id="flask-summary">현재 난이도의 전체 구성을 볼 수 있습니다.</span>
+                  </div>
+                  <div class="chip-group" id="flask-count-selector"></div>
+                </section>
+              </div>
+
+              <aside class="dashboard-side">
+                <section class="glass-panel">
+                  <div class="panel-head">
+                    <h3>스테이지 선택</h3>
+                    <span id="stage-panel-summary">선택한 조건의 스테이지를 확인하세요.</span>
+                  </div>
+                  <div class="stage-list" id="stage-list"></div>
+                </section>
+              </aside>
             </div>
-            <div class="stage-list" id="stage-list"></div>
-          </section>
+          </div>
         </div>
       </section>
 
       <section class="screen" id="game-screen" aria-labelledby="game-stage-title" hidden>
         <div class="game-shell">
-          <section class="hud-shell">
-            <div class="hud-top-row">
-              <button class="chrome-button chrome-button--hud" id="back-lobby-button" type="button">
-                로비
-              </button>
-              <div class="hud-title-wrap">
-                <p class="eyebrow" id="game-stage-path">초급 · 1 / 3</p>
-                <h2 id="game-stage-title">Stage</h2>
-              </div>
-              <div class="hud-actions">
-                <button class="chrome-button chrome-button--hud" id="game-help-button" type="button">규칙</button>
-                <button class="chrome-button chrome-button--hud" id="game-settings-button" type="button">설정</button>
+          <header class="game-topbar">
+            <button class="chrome-button chrome-button--hud" id="back-lobby-button" type="button">
+              대시보드
+            </button>
+
+            <div class="game-title-cluster">
+              <p class="eyebrow" id="game-stage-path">초급 · 1 / 3</p>
+              <h2 id="game-stage-title">Stage</h2>
+              <div class="game-progress-inline">
+                <strong id="game-progress-text">1 / 10</strong>
+                <div class="progress-track progress-track--compact" aria-hidden="true">
+                  <div class="progress-fill" id="game-progress-fill"></div>
+                </div>
               </div>
             </div>
 
-            <div class="hud-progress">
-              <div class="hud-progress-copy">
-                <span>진행 상황</span>
-                <strong id="game-progress-text">10개 중 1번째 진행 중</strong>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill" id="game-progress-fill"></div>
-              </div>
+            <div class="hud-actions">
+              <button class="chrome-button chrome-button--hud" id="game-help-button" type="button">규칙</button>
+              <button class="chrome-button chrome-button--hud" id="game-settings-button" type="button">설정</button>
             </div>
+          </header>
 
-            <div class="hud-stats">
-              <article class="hud-pill">
-                <span class="status-label">이동</span>
-                <strong id="move-count">0회</strong>
-              </article>
-              <article class="hud-pill">
-                <span class="status-label">시간</span>
-                <strong id="timer-text">00:00</strong>
-              </article>
-              <article class="hud-pill">
-                <span class="status-label">힌트</span>
-                <strong id="hint-count">3 / 3</strong>
-              </article>
-            </div>
+          <section class="game-status-strip" aria-label="현재 플레이 상태">
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">이동</span>
+              <strong id="move-count">0</strong>
+            </article>
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">시간</span>
+              <strong id="timer-text">00:00</strong>
+            </article>
+            <article class="hud-pill game-stat-pill">
+              <span class="status-label">힌트</span>
+              <strong id="hint-count">3</strong>
+            </article>
+            <article class="hud-pill game-stat-pill game-stat-pill--meta">
+              <span class="status-label">보드</span>
+              <strong id="board-stage-meta">플라스크 5개 · 색상 3종</strong>
+            </article>
           </section>
 
-          <div class="notice-banner is-hidden" id="game-notice" aria-live="polite"></div>
-
-          <section class="board-shell">
-            <div class="board-head">
-              <span class="board-caption" id="board-caption">플라스크를 선택하고 목적지를 눌러 이동하세요.</span>
-              <span class="board-caption board-caption--meta" id="board-stage-meta">플라스크 5개 · 색상 3종</span>
-            </div>
+          <section class="board-shell board-shell--focus">
             <div class="board-grid-wrap">
               <div class="board-grid" id="board" aria-live="polite"></div>
             </div>
+            <p class="sr-only" id="board-caption"></p>
           </section>
 
           <nav class="control-dock" aria-label="게임 조작">
@@ -245,6 +224,8 @@
             <button class="dock-button" id="restart-button" type="button">재시작</button>
             <button class="dock-button dock-button--danger" id="give-up-button" type="button">포기</button>
           </nav>
+
+          <div class="notice-banner is-hidden sr-only" id="game-notice" aria-live="polite"></div>
         </div>
       </section>
     </main>
@@ -1617,6 +1598,261 @@ svg {
   }
 }
 
+/* Dashboard / Game split refinements */
+.dashboard-scroll {
+  padding-top: calc(var(--top-frame-height) + var(--safe-top) + 10px);
+}
+
+.dashboard-shell {
+  display: grid;
+  gap: 18px;
+  padding-bottom: 10px;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.dashboard-main,
+.dashboard-side {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.dashboard-hero {
+  padding-bottom: 24px;
+}
+
+.dashboard-summary {
+  display: grid;
+  gap: 16px;
+  padding: 22px 20px;
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(20, 25, 47, 0.92), rgba(13, 17, 35, 0.95));
+  box-shadow: var(--glass-shadow);
+}
+
+.action-row--dashboard {
+  margin-top: 2px;
+}
+
+body[data-screen="game"] {
+  background:
+    radial-gradient(circle at 50% 12%, rgba(123, 105, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(48, 207, 156, 0.1), transparent 22%),
+    linear-gradient(180deg, #0a0d17 0%, #060810 100%);
+}
+
+body[data-screen="game"] .ambient-layer {
+  opacity: 0.42;
+  filter: blur(24px);
+}
+
+.game-shell {
+  gap: 10px;
+  padding: calc(var(--safe-top) + 8px) 10px var(--screen-padding-bottom);
+}
+
+.game-topbar,
+.game-status-strip {
+  position: relative;
+  z-index: 4;
+}
+
+.game-topbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(17, 21, 41, 0.92), rgba(11, 14, 28, 0.95));
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.24);
+}
+
+.game-title-cluster {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+
+.game-title-cluster h2 {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: 1.18rem;
+  letter-spacing: -0.04em;
+}
+
+.game-progress-inline {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.game-progress-inline strong {
+  color: rgba(234, 240, 255, 0.78);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.progress-track--compact {
+  width: min(100%, 140px);
+  height: 6px;
+}
+
+.game-status-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.game-stat-pill {
+  padding: 10px 12px;
+  gap: 4px;
+}
+
+.game-stat-pill strong {
+  color: var(--text-strong);
+  font-size: 0.98rem;
+}
+
+.game-stat-pill--meta {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.game-stat-pill--meta strong {
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.board-shell--focus {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 10px 10px 12px;
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    linear-gradient(180deg, rgba(13, 17, 34, 0.98), rgba(8, 10, 22, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 30px 44px rgba(0, 0, 0, 0.28);
+}
+
+.board-shell--focus .board-grid-wrap {
+  padding: 2px 0 0;
+}
+
+.board-grid.board-5 { --tube-width: 72px; --tube-height: 208px; }
+.board-grid.board-10 { --tube-width: 66px; --tube-height: 184px; }
+.board-grid.board-15 { --tube-width: 58px; --tube-height: 158px; --board-gap-y: 10px; --board-gap-x: 8px; }
+.board-grid.board-20 { --tube-width: 50px; --tube-height: 130px; --board-gap-y: 8px; --board-gap-x: 6px; }
+
+.tube-stack {
+  inset: 56px 14px 14px;
+  gap: 5px;
+}
+
+.tube-slot,
+.liquid-layer {
+  border-radius: 14px;
+}
+
+.tube-slot {
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.liquid-layer {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -10px 16px rgba(0, 0, 0, 0.12),
+    0 8px 14px rgba(0, 0, 0, 0.12);
+}
+
+.liquid-layer::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.04) 46%, transparent 78%),
+    radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.26), transparent 34%);
+}
+
+.control-dock {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.dock-button {
+  min-width: 0;
+}
+
+body[data-screen="game"] .toast {
+  display: none !important;
+}
+
+@media (min-width: 820px) {
+  .dashboard-scroll {
+    width: min(100%, 1120px);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    align-items: start;
+  }
+
+  .game-shell {
+    width: min(100%, 980px);
+    padding-inline: 16px;
+  }
+
+  .game-status-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .game-stat-pill--meta {
+    grid-column: auto;
+  }
+
+  .board-grid.board-5 { --tube-width: 84px; --tube-height: 228px; }
+  .board-grid.board-10 { --tube-width: 78px; --tube-height: 204px; }
+  .board-grid.board-15 { --tube-width: 68px; --tube-height: 176px; }
+  .board-grid.board-20 { --tube-width: 58px; --tube-height: 146px; --board-gap-y: 10px; --board-gap-x: 8px; }
+}
+
+@media (max-width: 480px) {
+  .game-topbar {
+    padding: 10px 12px;
+  }
+
+  .game-title-cluster h2 {
+    font-size: 1.08rem;
+  }
+
+  .progress-track--compact {
+    width: 110px;
+  }
+
+  .control-dock {
+    gap: 8px;
+  }
+
+  .board-grid.board-5 { --tube-width: 64px; --tube-height: 190px; }
+  .board-grid.board-10 { --tube-width: 58px; --tube-height: 164px; }
+  .board-grid.board-15 { --tube-width: 51px; --tube-height: 142px; --board-gap-y: 8px; --board-gap-x: 6px; }
+  .board-grid.board-20 { --tube-width: 44px; --tube-height: 114px; --board-gap-y: 6px; --board-gap-x: 5px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-scale: 0;
@@ -1671,7 +1907,7 @@ svg {
   var difficultyMap = {};
   var solverColorMap = {};
   var state = {
-    screen: "opening",
+    screen: "dashboard",
     selectedDifficulty: APP_DATA.difficulties[0].key,
     selectedFlaskCount: "all",
     settings: cloneObject(DEFAULT_SETTINGS),
@@ -1732,11 +1968,11 @@ svg {
   function cacheElements() {
     els.appShell = document.getElementById("app-shell");
     els.topFrame = document.getElementById("top-frame");
+    els.dashboardScreen = document.getElementById("dashboard-screen");
     els.globalBrandName = document.getElementById("global-brand-name");
     els.globalHelpButton = document.getElementById("global-help-button");
     els.globalSettingsButton = document.getElementById("global-settings-button");
 
-    els.openingScreen = document.getElementById("opening-screen");
     els.openingBrand = document.getElementById("opening-brand");
     els.openingWelcome = document.getElementById("opening-welcome");
     els.openingTagline = document.getElementById("opening-tagline");
@@ -1747,7 +1983,6 @@ svg {
     els.openingContinueButton = document.getElementById("opening-continue-button");
     els.openingSettingsButton = document.getElementById("opening-settings-button");
 
-    els.lobbyScreen = document.getElementById("lobby-screen");
     els.overallProgressText = document.getElementById("overall-progress-text");
     els.overallProgressFill = document.getElementById("overall-progress-fill");
     els.homeProgressSummary = document.getElementById("home-progress-summary");
@@ -1833,9 +2068,7 @@ svg {
     els.globalHelpButton.addEventListener("click", openHelpModal);
     els.globalSettingsButton.addEventListener("click", openSettingsModal);
     els.openingSettingsButton.addEventListener("click", openSettingsModal);
-    els.openingStartButton.addEventListener("click", function () {
-      goToLobby(true);
-    });
+    els.openingStartButton.addEventListener("click", startSuggestedStage);
     els.openingContinueButton.addEventListener("click", resumeCurrentRun);
 
     els.lobbyStartButton.addEventListener("click", startSuggestedStage);
@@ -1846,7 +2079,7 @@ svg {
     els.stageList.addEventListener("click", onStageListClick);
 
     els.backLobbyButton.addEventListener("click", function () {
-      goToLobby(false);
+      goToDashboard(false);
     });
     els.gameHelpButton.addEventListener("click", openHelpModal);
     els.gameSettingsButton.addEventListener("click", openSettingsModal);
@@ -1921,9 +2154,8 @@ svg {
 
   // Screen rendering
   function renderCurrentScreen() {
-    document.body.setAttribute("data-screen", state.screen);
-    setScreenVisibility("opening", state.screen === "opening");
-    setScreenVisibility("lobby", state.screen === "lobby");
+    document.body.setAttribute("data-screen", state.screen === "game" ? "game" : "dashboard");
+    setScreenVisibility("dashboard", state.screen !== "game");
     setScreenVisibility("game", state.screen === "game");
 
     renderOpening();
@@ -1936,11 +2168,7 @@ svg {
   }
 
   function setScreenVisibility(screenName, visible) {
-    var element = screenName === "opening"
-      ? els.openingScreen
-      : screenName === "lobby"
-        ? els.lobbyScreen
-        : els.gameScreen;
+    var element = screenName === "dashboard" ? els.dashboardScreen : els.gameScreen;
     element.hidden = !visible;
     element.classList.toggle("is-active", visible);
   }
@@ -2006,21 +2234,13 @@ svg {
 
     els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + " / " + diffStages.length;
     els.gameStageTitle.textContent = stage.title;
-    els.gameProgressText.textContent = APP_DATA.stages.length + "개 중 " + stage.globalOrder + "번째 진행 중";
+    els.gameProgressText.textContent = stage.globalOrder + " / " + APP_DATA.stages.length;
     els.gameProgressFill.style.width = globalProgress.toFixed(1) + "%";
-    els.moveCount.textContent = run.moveCount + "회";
+    els.moveCount.textContent = String(run.moveCount);
     els.timerText.textContent = formatTime(getElapsedMs());
     els.hintCount.textContent = run.hintsRemaining + " / " + stage.hintLimit;
-    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종 · 기준 이동 " + stage.par + "회";
-
-    if (run.activeHint) {
-      els.boardCaption.textContent = "힌트: " + (run.activeHint.source + 1) + "번 → " + (run.activeHint.target + 1) + "번";
-    } else if (state.selectedTubeIndex !== null) {
-      els.boardCaption.textContent =
-        (state.selectedTubeIndex + 1) + "번 플라스크를 선택했습니다. 민트 링이 이동 가능한 목적지입니다.";
-    } else {
-      els.boardCaption.textContent = "출발 플라스크를 먼저 고르고, 도착 플라스크를 눌러 액체를 이동하세요.";
-    }
+    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종";
+    els.boardCaption.textContent = run.activeHint ? "힌트 하이라이트가 표시되었습니다." : "";
 
     renderBoard();
     renderGameNotice();
@@ -2185,30 +2405,28 @@ svg {
 
   function buildLayerStyle(colorKey) {
     var hex = getColorHex(colorKey);
-    var topHex = adjustHexColor(hex, 18);
-    var bottomHex = adjustHexColor(hex, -18);
+    var topHex = adjustHexColor(hex, 28);
+    var midHex = adjustHexColor(hex, 10);
+    var bottomHex = adjustHexColor(hex, -26);
     return (
       "background: linear-gradient(180deg, " +
       topHex +
       " 0%, " +
+      midHex +
+      " 34%, " +
       hex +
-      " 58%, " +
+      " 68%, " +
       bottomHex +
       " 100%);" +
-      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -8px 14px rgba(0,0,0,0.1), 0 8px 18px " +
+      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), inset 0 -10px 16px rgba(0,0,0,0.12), 0 10px 18px " +
       toRgba(hex, 0.22) +
-      ";"
+      "; border-top: 1px solid rgba(255,255,255,0.18);"
     );
   }
 
   function renderGameNotice() {
-    if (!state.notice || state.screen !== "game") {
-      els.gameNotice.className = "notice-banner is-hidden";
-      els.gameNotice.textContent = "";
-      return;
-    }
-    els.gameNotice.className = "notice-banner " + (state.notice.type || "");
-    els.gameNotice.textContent = state.notice.text;
+    els.gameNotice.className = "notice-banner is-hidden sr-only";
+    els.gameNotice.textContent = "";
   }
 
   function updateGameControls() {
@@ -2361,7 +2579,7 @@ svg {
 
   function resumeCurrentRun() {
     if (!state.currentRun || !stageMap[state.currentRun.stageId]) {
-      goToLobby(true);
+      goToDashboard(true);
       return;
     }
 
@@ -2373,7 +2591,7 @@ svg {
   }
 
   // Game state transitions
-  function goToLobby(shouldOfferTutorial) {
+  function goToDashboard(shouldOfferTutorial) {
     pauseGameTimer();
     state.hintRequestId += 1;
     state.solvingHint = false;
@@ -2381,7 +2599,7 @@ svg {
     clearSelection();
     closeModal();
     clearNotice(false);
-    state.screen = "lobby";
+    state.screen = "dashboard";
     saveState();
     renderCurrentScreen();
 
@@ -2466,7 +2684,6 @@ svg {
     renderGame();
     startGameTimer();
     pulseRecentMove();
-    setNotice((sourceIndex + 1) + "번 → " + (targetIndex + 1) + "번으로 " + block.count + "칸 이동", "success");
     audioEngine.playSfx("move");
     vibratePattern("success");
 
@@ -2497,7 +2714,6 @@ svg {
     saveState();
     renderGame();
     startGameTimer();
-    setNotice("방금 이동을 되돌렸어요.", "success");
   }
 
   function requestHint() {
@@ -2516,7 +2732,6 @@ svg {
     requestId = state.hintRequestId;
     boardSnapshot = cloneBoard(run.board);
     clearSelection();
-    setNotice("현재 상태에서 실제 해결 경로를 계산하는 중입니다...", "success", true);
     renderGame();
 
     window.setTimeout(function () {
@@ -2534,8 +2749,8 @@ svg {
       state.solvingHint = false;
 
       if (!path || !path.length) {
-        setNotice("힌트를 계산하지 못했어요. 한 수 되돌린 뒤 다시 시도해 보세요.", "warning", true);
         audioEngine.playSfx("invalid");
+        vibratePattern("invalid");
         renderGame();
         return;
       }
@@ -2549,7 +2764,6 @@ svg {
       state.validTargets = getValidTargets(run.board, path[0].source, stage.capacity);
       saveState();
       renderGame();
-      setNotice("추천 이동: " + (path[0].source + 1) + "번 → " + (path[0].target + 1) + "번", "success", true);
       audioEngine.playSfx("hint");
       vibratePattern("hint");
     }, 28);
@@ -2580,12 +2794,12 @@ svg {
       title: "이번 도전을 포기할까요?",
       body:
         '<div class="modal-stack">' +
-        '<div class="modal-chip"><p class="modal-copy">포기하면 이번 도전은 실패로 기록됩니다. 바로 다시 도전하거나, 로비로 돌아가 다른 스테이지를 고를 수 있습니다.</p></div>' +
+        '<div class="modal-chip"><p class="modal-copy">포기하면 이번 도전은 실패로 기록됩니다. 바로 다시 도전하거나, 대시보드로 돌아가 다른 스테이지를 고를 수 있습니다.</p></div>' +
         "</div>",
       actions: [
         { id: "close", label: "계속 플레이" },
         { id: "give-up-retry", label: "다시 도전", primary: true },
-        { id: "give-up-lobby", label: "로비로 이동", danger: true }
+        { id: "give-up-lobby", label: "대시보드로 이동", danger: true }
       ]
     });
   }
@@ -2625,7 +2839,7 @@ svg {
     state.hintRequestId += 1;
     clearSelection();
     saveState();
-    state.screen = "lobby";
+    state.screen = "dashboard";
     renderCurrentScreen();
     openClearModal(summary);
   }
@@ -2655,8 +2869,8 @@ svg {
       markFailure(state.currentRun.stageId);
       state.currentRun = null;
       closeModal();
-      goToLobby(false);
-      showToast("포기 기록을 남기고 로비로 돌아왔어요.");
+      goToDashboard(false);
+      showToast("포기 기록을 남기고 대시보드로 돌아왔어요.");
       return;
     }
 
@@ -2674,7 +2888,7 @@ svg {
 
     if (actionId === "go-lobby") {
       closeModal();
-      goToLobby(false);
+      goToDashboard(false);
       return;
     }
 
@@ -2812,7 +3026,7 @@ svg {
       label: summary.allCompleted ? "기록 보기" : "한 번 더",
       primary: !summary.nextStageId
     });
-    actions.push({ id: "go-lobby", label: "로비로 가기" });
+    actions.push({ id: "go-lobby", label: "대시보드로 가기" });
 
     openModal({
       title: "Stage Clear",
@@ -2963,7 +3177,6 @@ svg {
   function showInvalidFeedback(indices, message) {
     state.invalidTubes = indices.slice();
     clearSelection();
-    setNotice(message, "danger");
     audioEngine.playSfx("invalid");
     vibratePattern("invalid");
     renderGame();
@@ -2986,6 +3199,9 @@ svg {
   }
 
   function setNotice(text, type, sticky) {
+    if (state.screen === "game") {
+      return;
+    }
     clearTimeout(state.noticeId);
     state.notice = {
       text: text,
@@ -3008,6 +3224,9 @@ svg {
   }
 
   function showToast(text) {
+    if (state.screen === "game") {
+      return;
+    }
     clearTimeout(state.toastId);
     clearTimeout(state.toastHideId);
     els.toast.textContent = text;
@@ -4123,7 +4342,7 @@ svg {
   "use strict";
 
   window.COLOR_FLASK_DATA = {
-    version: "2.0.0",
+    version: "2.1.0",
     app: {
       name: "Prism Pour",
       shortName: "Prism Pour",
@@ -4161,22 +4380,22 @@ svg {
       }
     ],
     palette: {
-      plum: { label: "플럼", hex: "#7A56FF" },
-      mint: { label: "민트", hex: "#3EDCB0" },
-      sky: { label: "스카이", hex: "#59C4FF" },
-      rose: { label: "로즈", hex: "#FF73AE" },
-      amber: { label: "앰버", hex: "#FFBE59" },
-      teal: { label: "틸", hex: "#22CDC5" },
-      coral: { label: "코랄", hex: "#FF826C" },
-      indigo: { label: "인디고", hex: "#6374FF" },
-      lime: { label: "라임", hex: "#97DF63" },
-      violet: { label: "바이올렛", hex: "#C178FF" },
-      sun: { label: "선샤인", hex: "#FFE063" },
-      ocean: { label: "오션", hex: "#3598FF" },
-      peach: { label: "피치", hex: "#FFA67B" },
-      jade: { label: "제이드", hex: "#30C38A" },
-      berry: { label: "베리", hex: "#D8529D" },
-      slate: { label: "슬레이트", hex: "#8299B2" }
+      plum: { label: "딥 퍼플", hex: "#6F3DFF" },
+      mint: { label: "민트", hex: "#19E3B2" },
+      sky: { label: "스카이", hex: "#47D7FF" },
+      rose: { label: "로즈", hex: "#FF5A99" },
+      amber: { label: "앰버", hex: "#FF9F1C" },
+      teal: { label: "틸", hex: "#00C2B8" },
+      coral: { label: "코랄", hex: "#FF6B57" },
+      indigo: { label: "인디고", hex: "#4C6FFF" },
+      lime: { label: "라임", hex: "#B7DE2F" },
+      violet: { label: "바이올렛", hex: "#C774FF" },
+      sun: { label: "선샤인", hex: "#FFD93D" },
+      ocean: { label: "오션", hex: "#008CFF" },
+      peach: { label: "피치", hex: "#FFB277" },
+      jade: { label: "제이드", hex: "#17B36B" },
+      berry: { label: "베리", hex: "#D93E82" },
+      slate: { label: "슬레이트", hex: "#9BA7B7" }
     },
     stages: [
       {
@@ -4502,7 +4721,7 @@ svg {
 ## sw.js
 
 ```javascript
-var CACHE_VERSION = "prism-pour-cache-v2.0.0";
+var CACHE_VERSION = "prism-pour-cache-v2.1.0";
 var APP_SHELL = [
   "./",
   "./index.html",

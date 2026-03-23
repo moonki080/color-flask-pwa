@@ -41,7 +41,7 @@
   var difficultyMap = {};
   var solverColorMap = {};
   var state = {
-    screen: "opening",
+    screen: "dashboard",
     selectedDifficulty: APP_DATA.difficulties[0].key,
     selectedFlaskCount: "all",
     settings: cloneObject(DEFAULT_SETTINGS),
@@ -102,11 +102,11 @@
   function cacheElements() {
     els.appShell = document.getElementById("app-shell");
     els.topFrame = document.getElementById("top-frame");
+    els.dashboardScreen = document.getElementById("dashboard-screen");
     els.globalBrandName = document.getElementById("global-brand-name");
     els.globalHelpButton = document.getElementById("global-help-button");
     els.globalSettingsButton = document.getElementById("global-settings-button");
 
-    els.openingScreen = document.getElementById("opening-screen");
     els.openingBrand = document.getElementById("opening-brand");
     els.openingWelcome = document.getElementById("opening-welcome");
     els.openingTagline = document.getElementById("opening-tagline");
@@ -117,7 +117,6 @@
     els.openingContinueButton = document.getElementById("opening-continue-button");
     els.openingSettingsButton = document.getElementById("opening-settings-button");
 
-    els.lobbyScreen = document.getElementById("lobby-screen");
     els.overallProgressText = document.getElementById("overall-progress-text");
     els.overallProgressFill = document.getElementById("overall-progress-fill");
     els.homeProgressSummary = document.getElementById("home-progress-summary");
@@ -203,9 +202,7 @@
     els.globalHelpButton.addEventListener("click", openHelpModal);
     els.globalSettingsButton.addEventListener("click", openSettingsModal);
     els.openingSettingsButton.addEventListener("click", openSettingsModal);
-    els.openingStartButton.addEventListener("click", function () {
-      goToLobby(true);
-    });
+    els.openingStartButton.addEventListener("click", startSuggestedStage);
     els.openingContinueButton.addEventListener("click", resumeCurrentRun);
 
     els.lobbyStartButton.addEventListener("click", startSuggestedStage);
@@ -216,7 +213,7 @@
     els.stageList.addEventListener("click", onStageListClick);
 
     els.backLobbyButton.addEventListener("click", function () {
-      goToLobby(false);
+      goToDashboard(false);
     });
     els.gameHelpButton.addEventListener("click", openHelpModal);
     els.gameSettingsButton.addEventListener("click", openSettingsModal);
@@ -291,9 +288,8 @@
 
   // Screen rendering
   function renderCurrentScreen() {
-    document.body.setAttribute("data-screen", state.screen);
-    setScreenVisibility("opening", state.screen === "opening");
-    setScreenVisibility("lobby", state.screen === "lobby");
+    document.body.setAttribute("data-screen", state.screen === "game" ? "game" : "dashboard");
+    setScreenVisibility("dashboard", state.screen !== "game");
     setScreenVisibility("game", state.screen === "game");
 
     renderOpening();
@@ -306,11 +302,7 @@
   }
 
   function setScreenVisibility(screenName, visible) {
-    var element = screenName === "opening"
-      ? els.openingScreen
-      : screenName === "lobby"
-        ? els.lobbyScreen
-        : els.gameScreen;
+    var element = screenName === "dashboard" ? els.dashboardScreen : els.gameScreen;
     element.hidden = !visible;
     element.classList.toggle("is-active", visible);
   }
@@ -376,21 +368,13 @@
 
     els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + " / " + diffStages.length;
     els.gameStageTitle.textContent = stage.title;
-    els.gameProgressText.textContent = APP_DATA.stages.length + "개 중 " + stage.globalOrder + "번째 진행 중";
+    els.gameProgressText.textContent = stage.globalOrder + " / " + APP_DATA.stages.length;
     els.gameProgressFill.style.width = globalProgress.toFixed(1) + "%";
-    els.moveCount.textContent = run.moveCount + "회";
+    els.moveCount.textContent = String(run.moveCount);
     els.timerText.textContent = formatTime(getElapsedMs());
     els.hintCount.textContent = run.hintsRemaining + " / " + stage.hintLimit;
-    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종 · 기준 이동 " + stage.par + "회";
-
-    if (run.activeHint) {
-      els.boardCaption.textContent = "힌트: " + (run.activeHint.source + 1) + "번 → " + (run.activeHint.target + 1) + "번";
-    } else if (state.selectedTubeIndex !== null) {
-      els.boardCaption.textContent =
-        (state.selectedTubeIndex + 1) + "번 플라스크를 선택했습니다. 민트 링이 이동 가능한 목적지입니다.";
-    } else {
-      els.boardCaption.textContent = "출발 플라스크를 먼저 고르고, 도착 플라스크를 눌러 액체를 이동하세요.";
-    }
+    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종";
+    els.boardCaption.textContent = run.activeHint ? "힌트 하이라이트가 표시되었습니다." : "";
 
     renderBoard();
     renderGameNotice();
@@ -555,30 +539,28 @@
 
   function buildLayerStyle(colorKey) {
     var hex = getColorHex(colorKey);
-    var topHex = adjustHexColor(hex, 18);
-    var bottomHex = adjustHexColor(hex, -18);
+    var topHex = adjustHexColor(hex, 28);
+    var midHex = adjustHexColor(hex, 10);
+    var bottomHex = adjustHexColor(hex, -26);
     return (
       "background: linear-gradient(180deg, " +
       topHex +
       " 0%, " +
+      midHex +
+      " 34%, " +
       hex +
-      " 58%, " +
+      " 68%, " +
       bottomHex +
       " 100%);" +
-      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -8px 14px rgba(0,0,0,0.1), 0 8px 18px " +
+      " box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), inset 0 -10px 16px rgba(0,0,0,0.12), 0 10px 18px " +
       toRgba(hex, 0.22) +
-      ";"
+      "; border-top: 1px solid rgba(255,255,255,0.18);"
     );
   }
 
   function renderGameNotice() {
-    if (!state.notice || state.screen !== "game") {
-      els.gameNotice.className = "notice-banner is-hidden";
-      els.gameNotice.textContent = "";
-      return;
-    }
-    els.gameNotice.className = "notice-banner " + (state.notice.type || "");
-    els.gameNotice.textContent = state.notice.text;
+    els.gameNotice.className = "notice-banner is-hidden sr-only";
+    els.gameNotice.textContent = "";
   }
 
   function updateGameControls() {
@@ -731,7 +713,7 @@
 
   function resumeCurrentRun() {
     if (!state.currentRun || !stageMap[state.currentRun.stageId]) {
-      goToLobby(true);
+      goToDashboard(true);
       return;
     }
 
@@ -743,7 +725,7 @@
   }
 
   // Game state transitions
-  function goToLobby(shouldOfferTutorial) {
+  function goToDashboard(shouldOfferTutorial) {
     pauseGameTimer();
     state.hintRequestId += 1;
     state.solvingHint = false;
@@ -751,7 +733,7 @@
     clearSelection();
     closeModal();
     clearNotice(false);
-    state.screen = "lobby";
+    state.screen = "dashboard";
     saveState();
     renderCurrentScreen();
 
@@ -836,7 +818,6 @@
     renderGame();
     startGameTimer();
     pulseRecentMove();
-    setNotice((sourceIndex + 1) + "번 → " + (targetIndex + 1) + "번으로 " + block.count + "칸 이동", "success");
     audioEngine.playSfx("move");
     vibratePattern("success");
 
@@ -867,7 +848,6 @@
     saveState();
     renderGame();
     startGameTimer();
-    setNotice("방금 이동을 되돌렸어요.", "success");
   }
 
   function requestHint() {
@@ -886,7 +866,6 @@
     requestId = state.hintRequestId;
     boardSnapshot = cloneBoard(run.board);
     clearSelection();
-    setNotice("현재 상태에서 실제 해결 경로를 계산하는 중입니다...", "success", true);
     renderGame();
 
     window.setTimeout(function () {
@@ -904,8 +883,8 @@
       state.solvingHint = false;
 
       if (!path || !path.length) {
-        setNotice("힌트를 계산하지 못했어요. 한 수 되돌린 뒤 다시 시도해 보세요.", "warning", true);
         audioEngine.playSfx("invalid");
+        vibratePattern("invalid");
         renderGame();
         return;
       }
@@ -919,7 +898,6 @@
       state.validTargets = getValidTargets(run.board, path[0].source, stage.capacity);
       saveState();
       renderGame();
-      setNotice("추천 이동: " + (path[0].source + 1) + "번 → " + (path[0].target + 1) + "번", "success", true);
       audioEngine.playSfx("hint");
       vibratePattern("hint");
     }, 28);
@@ -950,12 +928,12 @@
       title: "이번 도전을 포기할까요?",
       body:
         '<div class="modal-stack">' +
-        '<div class="modal-chip"><p class="modal-copy">포기하면 이번 도전은 실패로 기록됩니다. 바로 다시 도전하거나, 로비로 돌아가 다른 스테이지를 고를 수 있습니다.</p></div>' +
+        '<div class="modal-chip"><p class="modal-copy">포기하면 이번 도전은 실패로 기록됩니다. 바로 다시 도전하거나, 대시보드로 돌아가 다른 스테이지를 고를 수 있습니다.</p></div>' +
         "</div>",
       actions: [
         { id: "close", label: "계속 플레이" },
         { id: "give-up-retry", label: "다시 도전", primary: true },
-        { id: "give-up-lobby", label: "로비로 이동", danger: true }
+        { id: "give-up-lobby", label: "대시보드로 이동", danger: true }
       ]
     });
   }
@@ -995,7 +973,7 @@
     state.hintRequestId += 1;
     clearSelection();
     saveState();
-    state.screen = "lobby";
+    state.screen = "dashboard";
     renderCurrentScreen();
     openClearModal(summary);
   }
@@ -1025,8 +1003,8 @@
       markFailure(state.currentRun.stageId);
       state.currentRun = null;
       closeModal();
-      goToLobby(false);
-      showToast("포기 기록을 남기고 로비로 돌아왔어요.");
+      goToDashboard(false);
+      showToast("포기 기록을 남기고 대시보드로 돌아왔어요.");
       return;
     }
 
@@ -1044,7 +1022,7 @@
 
     if (actionId === "go-lobby") {
       closeModal();
-      goToLobby(false);
+      goToDashboard(false);
       return;
     }
 
@@ -1182,7 +1160,7 @@
       label: summary.allCompleted ? "기록 보기" : "한 번 더",
       primary: !summary.nextStageId
     });
-    actions.push({ id: "go-lobby", label: "로비로 가기" });
+    actions.push({ id: "go-lobby", label: "대시보드로 가기" });
 
     openModal({
       title: "Stage Clear",
@@ -1333,7 +1311,6 @@
   function showInvalidFeedback(indices, message) {
     state.invalidTubes = indices.slice();
     clearSelection();
-    setNotice(message, "danger");
     audioEngine.playSfx("invalid");
     vibratePattern("invalid");
     renderGame();
@@ -1356,6 +1333,9 @@
   }
 
   function setNotice(text, type, sticky) {
+    if (state.screen === "game") {
+      return;
+    }
     clearTimeout(state.noticeId);
     state.notice = {
       text: text,
@@ -1378,6 +1358,9 @@
   }
 
   function showToast(text) {
+    if (state.screen === "game") {
+      return;
+    }
     clearTimeout(state.toastId);
     clearTimeout(state.toastHideId);
     els.toast.textContent = text;

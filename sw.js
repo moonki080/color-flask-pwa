@@ -1,4 +1,4 @@
-var CACHE_VERSION = "prism-pour-cache-v2.0.0";
+var CACHE_VERSION = "prism-pour-cache-v2.1.0";
 var APP_SHELL = [
   "./",
   "./index.html",
