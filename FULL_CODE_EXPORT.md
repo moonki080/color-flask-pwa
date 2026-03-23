@@ -171,45 +171,46 @@
       <section class="screen" id="game-screen" aria-labelledby="game-stage-title" hidden>
         <div class="game-shell">
           <header class="game-topbar">
-            <button class="chrome-button chrome-button--hud" id="back-lobby-button" type="button">
-              대시보드
+            <button class="game-icon-button" id="back-lobby-button" type="button" aria-label="대시보드로 이동">
+              <span aria-hidden="true">‹</span>
             </button>
 
             <div class="game-title-cluster">
               <p class="eyebrow" id="game-stage-path">초급 · 1 / 3</p>
               <h2 id="game-stage-title">Stage</h2>
-              <div class="game-progress-inline">
-                <strong id="game-progress-text">1 / 10</strong>
-                <div class="progress-track progress-track--compact" aria-hidden="true">
-                  <div class="progress-fill" id="game-progress-fill"></div>
-                </div>
-              </div>
             </div>
 
-            <div class="hud-actions">
-              <button class="chrome-button chrome-button--hud" id="game-help-button" type="button">규칙</button>
-              <button class="chrome-button chrome-button--hud" id="game-settings-button" type="button">설정</button>
+            <div class="game-top-actions">
+              <button class="sr-only" id="game-help-button" type="button">규칙</button>
+              <div class="game-top-pill" aria-live="polite">
+                <span>힌트</span>
+                <strong id="hint-count">3</strong>
+              </div>
+              <button class="game-icon-button" id="game-settings-button" type="button" aria-label="설정">
+                <span aria-hidden="true">⋯</span>
+              </button>
             </div>
           </header>
 
           <section class="game-status-strip" aria-label="현재 플레이 상태">
-            <article class="hud-pill game-stat-pill">
-              <span class="status-label">이동</span>
+            <span class="game-mini-stat">
+              <em>진행</em>
+              <strong id="game-progress-text">1 / 10</strong>
+            </span>
+            <span class="game-mini-stat">
+              <em>이동</em>
               <strong id="move-count">0</strong>
-            </article>
-            <article class="hud-pill game-stat-pill">
-              <span class="status-label">시간</span>
+            </span>
+            <span class="game-mini-stat">
+              <em>시간</em>
               <strong id="timer-text">00:00</strong>
-            </article>
-            <article class="hud-pill game-stat-pill">
-              <span class="status-label">힌트</span>
-              <strong id="hint-count">3</strong>
-            </article>
-            <article class="hud-pill game-stat-pill game-stat-pill--meta">
-              <span class="status-label">보드</span>
-              <strong id="board-stage-meta">플라스크 5개 · 색상 3종</strong>
-            </article>
+            </span>
+            <span class="game-mini-stat game-mini-stat--meta" id="board-stage-meta">플라스크 5개 · 색상 3종</span>
           </section>
+
+          <div class="progress-track progress-track--hairline" aria-hidden="true">
+            <div class="progress-fill" id="game-progress-fill"></div>
+          </div>
 
           <section class="board-shell board-shell--focus">
             <div class="board-grid-wrap" id="board-scroll-area">
@@ -218,12 +219,14 @@
             <p class="sr-only" id="board-caption"></p>
           </section>
 
-          <nav class="control-dock" aria-label="게임 조작">
-            <button class="dock-button dock-button--accent" id="hint-button" type="button">힌트</button>
-            <button class="dock-button" id="undo-button" type="button">되돌리기</button>
-            <button class="dock-button" id="restart-button" type="button">재시작</button>
-            <button class="dock-button dock-button--danger" id="give-up-button" type="button">포기</button>
-          </nav>
+          <div class="game-bottom-bar">
+            <nav class="control-dock" aria-label="게임 조작">
+              <button class="dock-button dock-button--accent" id="hint-button" type="button">힌트</button>
+              <button class="dock-button" id="undo-button" type="button">되돌리기</button>
+              <button class="dock-button" id="restart-button" type="button">재시작</button>
+              <button class="dock-button dock-button--danger" id="give-up-button" type="button">포기</button>
+            </nav>
+          </div>
 
           <div class="notice-banner is-hidden sr-only" id="game-notice" aria-live="polite"></div>
         </div>
@@ -1654,8 +1657,9 @@ body[data-screen="game"] .ambient-layer {
 }
 
 .game-shell {
-  gap: 10px;
-  padding: calc(var(--safe-top) + 8px) 10px var(--screen-padding-bottom);
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: calc(var(--safe-top) + 6px) 8px var(--screen-padding-bottom);
 }
 
 .game-topbar,
@@ -1668,71 +1672,123 @@ body[data-screen="game"] .ambient-layer {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: 26px;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.game-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(17, 21, 41, 0.92), rgba(11, 14, 28, 0.95));
-  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.24);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(16, 20, 38, 0.92);
+  color: var(--text-strong);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+  font-size: 1.1rem;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-top-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .game-title-cluster {
   min-width: 0;
   display: grid;
-  gap: 4px;
+  gap: 2px;
   text-align: center;
 }
 
 .game-title-cluster h2 {
   margin: 0;
   color: var(--text-strong);
-  font-size: 1.18rem;
+  font-size: 1.02rem;
   letter-spacing: -0.04em;
 }
 
-.game-progress-inline {
-  display: grid;
+.game-title-cluster .eyebrow {
+  justify-content: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.game-top-pill {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
-  justify-items: center;
-}
-
-.game-progress-inline strong {
-  color: rgba(234, 240, 255, 0.78);
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(16, 20, 38, 0.92);
+  color: var(--text-soft);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
   font-size: 0.76rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
-.progress-track--compact {
-  width: min(100%, 140px);
-  height: 6px;
+.game-top-pill strong {
+  color: var(--text-strong);
+  font-size: 0.92rem;
 }
 
 .game-status-strip {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.game-stat-pill {
-  padding: 10px 12px;
-  gap: 4px;
-}
-
-.game-stat-pill strong {
-  color: var(--text-strong);
-  font-size: 0.98rem;
-}
-
-.game-stat-pill--meta {
-  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 12px;
+  padding: 0 4px;
+  color: var(--text-dim);
   text-align: center;
 }
 
-.game-stat-pill--meta strong {
-  font-size: 0.84rem;
-  line-height: 1.35;
+.game-mini-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+}
+
+.game-mini-stat em {
+  font-style: normal;
+  color: rgba(183, 191, 228, 0.62);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.game-mini-stat strong {
+  color: rgba(244, 247, 255, 0.9);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.game-mini-stat--meta {
+  color: rgba(189, 196, 235, 0.72);
+  font-size: 0.72rem;
+}
+
+.progress-track--hairline {
+  width: min(100%, 150px);
+  height: 4px;
+  margin: -2px auto 0;
+  opacity: 0.74;
 }
 
 .board-shell--focus {
@@ -1741,14 +1797,14 @@ body[data-screen="game"] .ambient-layer {
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  padding: 10px 10px 12px;
-  border-radius: 34px;
+  padding: 8px 8px 10px;
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
-    linear-gradient(180deg, rgba(13, 17, 34, 0.98), rgba(8, 10, 22, 0.98));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(11, 15, 29, 0.98), rgba(7, 9, 18, 0.98));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 30px 44px rgba(0, 0, 0, 0.28);
+    0 24px 36px rgba(0, 0, 0, 0.22);
 }
 
 .board-shell--focus::before,
@@ -1802,10 +1858,10 @@ body[data-screen="game"] .ambient-layer {
   align-content: center;
 }
 
-.board-grid.board-5 { --tube-width: 74px; --tube-height: 214px; }
-.board-grid.board-10 { --tube-width: 68px; --tube-height: 190px; }
-.board-grid.board-15 { --tube-width: 60px; --tube-height: 166px; --board-gap-y: 10px; --board-gap-x: 8px; }
-.board-grid.board-20 { --tube-width: 52px; --tube-height: 136px; --board-gap-y: 8px; --board-gap-x: 6px; }
+.board-grid.board-5 { --tube-width: 70px; --tube-height: 204px; }
+.board-grid.board-10 { --tube-width: 64px; --tube-height: 178px; }
+.board-grid.board-15 { --tube-width: 56px; --tube-height: 152px; --board-gap-y: 8px; --board-gap-x: 6px; }
+.board-grid.board-20 { --tube-width: 48px; --tube-height: 124px; --board-gap-y: 6px; --board-gap-x: 5px; }
 
 .tube-stack {
   inset: 56px 14px 14px;
@@ -1840,15 +1896,28 @@ body[data-screen="game"] .ambient-layer {
   touch-action: manipulation;
 }
 
+.game-bottom-bar {
+  position: relative;
+  z-index: 4;
+  padding-top: 2px;
+}
+
 .control-dock {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  padding-top: 2px;
+  gap: 8px;
+  padding-top: 0;
 }
 
 .dock-button {
   min-width: 0;
+  min-height: 44px;
+  border-radius: 16px;
+  padding: 0 8px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  box-shadow: none;
 }
 
 body[data-screen="game"] .toast {
@@ -1870,41 +1939,37 @@ body[data-screen="game"] .toast {
     padding-inline: 16px;
   }
 
-  .game-status-strip {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .game-stat-pill--meta {
-    grid-column: auto;
-  }
-
-  .board-grid.board-5 { --tube-width: 84px; --tube-height: 228px; }
-  .board-grid.board-10 { --tube-width: 78px; --tube-height: 204px; }
-  .board-grid.board-15 { --tube-width: 70px; --tube-height: 184px; }
-  .board-grid.board-20 { --tube-width: 60px; --tube-height: 152px; --board-gap-y: 10px; --board-gap-x: 8px; }
+  .board-grid.board-5 { --tube-width: 80px; --tube-height: 222px; }
+  .board-grid.board-10 { --tube-width: 72px; --tube-height: 194px; }
+  .board-grid.board-15 { --tube-width: 62px; --tube-height: 166px; }
+  .board-grid.board-20 { --tube-width: 54px; --tube-height: 138px; --board-gap-y: 8px; --board-gap-x: 6px; }
 }
 
 @media (max-width: 480px) {
-  .game-topbar {
-    padding: 10px 12px;
-  }
-
   .game-title-cluster h2 {
-    font-size: 1.08rem;
+    font-size: 0.96rem;
   }
 
-  .progress-track--compact {
-    width: 110px;
+  .game-top-pill {
+    min-height: 36px;
+    padding-inline: 10px;
+    font-size: 0.72rem;
   }
 
   .control-dock {
     gap: 8px;
   }
 
-  .board-grid.board-5 { --tube-width: 66px; --tube-height: 196px; }
-  .board-grid.board-10 { --tube-width: 60px; --tube-height: 172px; }
-  .board-grid.board-15 { --tube-width: 53px; --tube-height: 148px; --board-gap-y: 8px; --board-gap-x: 6px; }
-  .board-grid.board-20 { --tube-width: 46px; --tube-height: 122px; --board-gap-y: 6px; --board-gap-x: 5px; }
+  .dock-button {
+    min-height: 42px;
+    font-size: 0.7rem;
+    padding-inline: 6px;
+  }
+
+  .board-grid.board-5 { --tube-width: 62px; --tube-height: 188px; }
+  .board-grid.board-10 { --tube-width: 56px; --tube-height: 164px; }
+  .board-grid.board-15 { --tube-width: 50px; --tube-height: 138px; --board-gap-y: 8px; --board-gap-x: 6px; }
+  .board-grid.board-20 { --tube-width: 42px; --tube-height: 112px; --board-gap-y: 6px; --board-gap-x: 5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2287,14 +2352,14 @@ body[data-screen="game"] .toast {
     var globalProgress = stage.globalOrder / APP_DATA.stages.length * 100;
     var run = state.currentRun;
 
-    els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + " / " + diffStages.length;
-    els.gameStageTitle.textContent = stage.title;
+    els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + "/" + diffStages.length;
+    els.gameStageTitle.textContent = "Stage " + stage.globalOrder;
     els.gameProgressText.textContent = stage.globalOrder + " / " + APP_DATA.stages.length;
     els.gameProgressFill.style.width = globalProgress.toFixed(1) + "%";
     els.moveCount.textContent = String(run.moveCount);
     els.timerText.textContent = formatTime(getElapsedMs());
-    els.hintCount.textContent = run.hintsRemaining + " / " + stage.hintLimit;
-    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종";
+    els.hintCount.textContent = String(run.hintsRemaining);
+    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + " · 색 " + stage.colors;
     els.boardCaption.textContent = run.activeHint ? "힌트 하이라이트가 표시되었습니다." : "";
 
     renderBoard();
@@ -2509,7 +2574,7 @@ body[data-screen="game"] .toast {
     els.undoButton.disabled = !run || !run.history.length;
     els.restartButton.disabled = !run;
     els.giveUpButton.disabled = !run;
-    els.hintButton.textContent = state.solvingHint ? "힌트 계산 중..." : "힌트";
+    els.hintButton.textContent = state.solvingHint ? "계산 중" : "힌트";
   }
 
   // Interaction handlers
@@ -4416,7 +4481,7 @@ body[data-screen="game"] .toast {
   "use strict";
 
   window.COLOR_FLASK_DATA = {
-    version: "2.2.0",
+    version: "2.3.0",
     app: {
       name: "Prism Pour",
       shortName: "Prism Pour",
@@ -4795,7 +4860,7 @@ body[data-screen="game"] .toast {
 ## sw.js
 
 ```javascript
-var CACHE_VERSION = "prism-pour-cache-v2.2.0";
+var CACHE_VERSION = "prism-pour-cache-v2.3.0";
 var APP_SHELL = [
   "./",
   "./index.html",

@@ -367,14 +367,14 @@
     var globalProgress = stage.globalOrder / APP_DATA.stages.length * 100;
     var run = state.currentRun;
 
-    els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + " / " + diffStages.length;
-    els.gameStageTitle.textContent = stage.title;
+    els.gameStagePath.textContent = getDifficultyLabel(stage.difficulty) + " · " + stage.order + "/" + diffStages.length;
+    els.gameStageTitle.textContent = "Stage " + stage.globalOrder;
     els.gameProgressText.textContent = stage.globalOrder + " / " + APP_DATA.stages.length;
     els.gameProgressFill.style.width = globalProgress.toFixed(1) + "%";
     els.moveCount.textContent = String(run.moveCount);
     els.timerText.textContent = formatTime(getElapsedMs());
-    els.hintCount.textContent = run.hintsRemaining + " / " + stage.hintLimit;
-    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + "개 · 색상 " + stage.colors + "종";
+    els.hintCount.textContent = String(run.hintsRemaining);
+    els.boardStageMeta.textContent = "플라스크 " + stage.flaskCount + " · 색 " + stage.colors;
     els.boardCaption.textContent = run.activeHint ? "힌트 하이라이트가 표시되었습니다." : "";
 
     renderBoard();
@@ -589,7 +589,7 @@
     els.undoButton.disabled = !run || !run.history.length;
     els.restartButton.disabled = !run;
     els.giveUpButton.disabled = !run;
-    els.hintButton.textContent = state.solvingHint ? "힌트 계산 중..." : "힌트";
+    els.hintButton.textContent = state.solvingHint ? "계산 중" : "힌트";
   }
 
   // Interaction handlers
